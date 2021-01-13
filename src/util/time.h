@@ -27,12 +27,6 @@ void UninterruptibleSleep(const std::chrono::microseconds& n);
 inline int64_t count_seconds(std::chrono::seconds t) { return t.count(); }
 inline int64_t count_microseconds(std::chrono::microseconds t) { return t.count(); }
 
-/**
- * DEPRECATED
- * Use either GetSystemTimeInSeconds (not mockable) or GetTime<T> (mockable)
- */
-int64_t GetTime();
-
 /** Returns the system time (not mockable) */
 int64_t GetTimeMillis();
 /** Returns the system time (not mockable) */
@@ -46,7 +40,7 @@ void SetMockTime(int64_t nMockTimeIn);
 int64_t GetMockTime();
 
 /** Return system time (or mocked time, if set) */
-template <typename T>
+template <typename T = int64_t>
 T GetTime();
 
 /**
